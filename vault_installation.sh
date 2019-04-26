@@ -1,6 +1,6 @@
 IPADD=$(hostname -i)
 echo "The IPD add is $IPADD"
-sed 's/HOST/$IPADD/g' vault.hcl
+sed 's/IP_ADDRESS/$IPADD/g' vault.hcl
 wget https://releases.hashicorp.com/vault/1.1.1/vault_1.1.1_linux_amd64.zip
 unzip vault_1.1.1_linux_amd64.zip
 sudo chown root:root vault
