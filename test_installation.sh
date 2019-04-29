@@ -1,4 +1,14 @@
-IPD=$(hostname -i)
+
+if [ -n "$1" ]; then
+  IPD=$1
+  echo "You supplied the first parameter!"
+else
+  IPD=$1
+  echo "First parameter not supplied."
+fi
+
+
+
 echo "The IPD add is $IPD"
 sed -i "s/IP_ADDRESS/$IPD/g" vault.hcl
 echo "Updated vault.hcl"
