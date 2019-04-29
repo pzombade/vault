@@ -1,7 +1,6 @@
-# vault
 HashiCorp Vault Deployment
 
-An attempt to install HashiCorp Vault with https://labs.play-with-docker.com
+An attempt to install HashiCorp Vault https://www.hashicorp.com/products/vault with https://labs.play-with-docker.com
 1. Login into https://labs.play-with-docker.com and hit "Add a new instance".
 2. In the new Docker shell clone this repository. (put clonde command here)
 3. Give executable permissins to installation.sh
