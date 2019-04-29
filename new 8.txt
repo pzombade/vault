@@ -1,0 +1,19 @@
+Kubernetes tightly coupled with ETCD
+Vault - Split brain
+Update/Refresh of Root keys/Tokens - New workflow 
+Managing failed synchronization of Unseal keys/Tokens between primary/secondary
+Evaluate enterprise Vault, Cluster/FIPS/Unseal Keys
+No cache/Tenant on-boarding
+Uniqueness of secret-ids- GUID
+Secure connections between micro services - certificates - SSL/TLS
+Save/Apply workflow 2 different workflows, 
+CRUD of secrets - 
+Cross launch of secrets/User experience
+Error handling
+Notifications in details
+Delete of Tenant - delete token secrets
+
+
+Vault Enterprise HA - Performance Replication
+https://www.vaultproject.io/docs/enterprise/replication/index.html
+

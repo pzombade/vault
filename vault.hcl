@@ -1,10 +1,13 @@
+
+#Vault Configuration
+
 ui=true
 
 api_addr = "http://IP_ADDRESS:8200"
 cluster_addr = "https://IP_ADDRESS:8201"
 
 storage "file"{
-path = "/root/vault/vault_file_storage2"
+path = "/etc/vault.d/vault_storage"
 }
 
 listener "tcp" {

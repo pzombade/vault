@@ -1,8 +1,12 @@
-mkdir /etc/vault.d
-sudo cp vault.hcl /etc/vault.d
-IPD="Dynamic"
+
+
+IPD=$(hostname -i)
 echo "The IPD add is $IPD"
-sed "s/IP_ADDRESS/$IPD/g" vault.hcl
+sed -i "s/IP_ADDRESS/$IPD/g" vault.hcl
+echo "Updated vault.hcl"
+
+mkdir /etc/vault.d
+cp vault.hcl /etc/vault.d
 
 sudo mv vault.service /etc/systemd/system
 sudo mkdir -p /etc/vault.d/vault_storage
