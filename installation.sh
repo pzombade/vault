@@ -1,3 +1,9 @@
+apt-get install
+apt-get update
+apt-get install git unzip wget vim sudo
+apt install apt-file -y  && apt-file update
+apt-get install libcap2-bin
+
 IPD=$(hostname -i)
 echo "The IPD add is $IPD"
 sed -i "s/IP_ADDRESS/$IPD/g" vault.hcl
