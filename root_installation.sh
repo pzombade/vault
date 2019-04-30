@@ -13,4 +13,4 @@ chmod 640 /etc/vault.d/vault.hcl
 systemctl enable vault
 systemctl start vault
 systemctl status vault
-
+echo "Done!"
