@@ -12,5 +12,6 @@ chmod 640 /etc/vault.d/vault.hcl
 
 systemctl enable vault
 systemctl start vault
-systemctl status vault
+export VAULT_ADDR=http://clm-pun-tlfq28.bmc.com:8200
+vault operator init -recovery-shares=5 -recovery-threshold=2 >> keys.txt
 echo "Done!"
