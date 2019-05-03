@@ -13,7 +13,8 @@ echo "Updated vault.hcl"
 
 mv vault.hcl /etc/vault.d/vault.hcl
 
-vault server -config=/etc/vault.d/vault.hcl
+vault server -config=/etc/vault.d/vault.hcl &
+vault operator init -recovery-shares=5 -recovery-threshold=2 >> keys.txt
 
 
 
