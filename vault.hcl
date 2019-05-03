@@ -7,7 +7,7 @@ api_addr = "http://IP_ADDRESS:8200"
 cluster_addr = "https://IP_ADDRESS:8201"
 
 storage "file"{
-path = "/etc/vault.d/vault_storage"
+path = "/etc/vault_storage"
 }
 
 listener "tcp" {
