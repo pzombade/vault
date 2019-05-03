@@ -13,6 +13,13 @@ echo "Updated vault.hcl"
 
 mv vault.hcl /etc/vault.d/vault.hcl
 
+echo "Starting the vault server"
 vault server -config=/etc/vault.d/vault.hcl >> capture.txt
+
+echo "Moving the unseal key to keys.txt"
 vault operator init >> keys.txt
+
+cat keys.txt
+
+echo "Done!"
 
