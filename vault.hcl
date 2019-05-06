@@ -9,7 +9,7 @@ cluster_addr = "https://IP_ADDRESS:8201"
 storage "etcd" {
   address  = "http://ETCD_HOST_1:2380,http://ETCD_HOST_2:2380"
   etcd_api = "v3"
-  path = "my-vault-data8/"
+  path = "my-vault-data-UUID_PATH/"
   ha_enabled    = "true"
 }
 

@@ -23,19 +23,24 @@ sudo cp vault.service /etc/systemd/system/vault.service
 sudo mkdir --parents /etc/vault.d
 sudo touch /etc/vault.d/vault.hcl
 
-
+UUID=$(uuidgen)
 echo "The IPD add is $1"
 sed -i "s/IP_ADDRESS/$1/g" vault.hcl
 echo "ETCD host 1: $2"
 echo "ETCD host 2: $3"
 sed -i "s/ETCD_HOST_1/$2/g" vault.hcl
 sed -i "s/ETCD_HOST_2/$3/g" vault.hcl
+sed -i "s/UUID_PATH/$UUID/g" vault.hcl
 echo "Updated vault.hcl"
 
 sudo cp vault.hcl /etc/vault.d/vault.hcl
 
 sudo chown --recursive vault:vault /etc/vault.d
 sudo chmod 640 /etc/vault.d/vault.hcl
+
+sudo systemctl enable vault
+sudo systemctl start vault
+sudo systemctl status vault
 
 HOST_FQDN_NAME=$(hostname -f)
 export VAULT_ADDR=http://$HOST_FQDN_NAME:8200
