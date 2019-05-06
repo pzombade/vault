@@ -3,15 +3,18 @@
 
 ui=true
 
-api_addr = "http://10.133.186.27:8200"
-cluster_addr = "https://10.133.186.27:8201"
+api_addr = "http://IP_ADDRESS:8200"
+cluster_addr = "https://IP_ADDRESS:8201"
 
-storage "file"{
-path = "/etc/vault.d/vault_storage"
+storage "etcd" {
+  address  = "http://ETCD_HOST_1:2380,http://ETCD_HOST_2:2380"
+  etcd_api = "v3"
+  path = "my-vault-data8/"
+  ha_enabled    = "true"
 }
 
 listener "tcp" {
-   cluster_address  = "10.133.186.27:8201"
+   cluster_address  = "IP_ADDRESS:8201"
    address     = "0.0.0.0:8200"
    tls_disable = 1
 }
@@ -27,4 +30,7 @@ path "sys/mounts" {
 path "pki*" {
   capabilities = [ "create", "read", "update", "delete", "list", "sudo" ]
 }
+
+
+
 
