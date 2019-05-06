@@ -22,8 +22,11 @@ sudo cp vault.service /etc/systemd/system/vault.service
 
 sudo mkdir --parents /etc/vault.d
 
-
+HOST_FQDN_NAME=$(hostname -f)
+export VAULT_ADDR=http://$HOST_FQDN_NAME:8200
 UUID=$(uuidgen)
+
+echo "UUID is $UUID"
 echo "The IPD add is $1"
 sed -i "s/IP_ADDRESS/$1/g" vault.hcl
 echo "ETCD host 1: $2"
@@ -45,11 +48,13 @@ sudo systemctl start vault
 echo "Sleeping for 20 seconds. So that vault can start successfully."
 sleep 15s
 
-HOST_FQDN_NAME=$(hostname -f)
-export VAULT_ADDR=http://$HOST_FQDN_NAME:8200
+
 
 echo "Initializing vault in keys.txt"
 vault operator init >> keys.txt
+
+echo "Sleeping for 10 seconds..."
+sleep 10s
 
 echo "Unsealing the vault for $VAULT_ADDR"
 for i in `cat keys.txt | grep "Unseal Key " | awk '{print $4}'` ;
