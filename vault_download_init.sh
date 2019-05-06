@@ -23,13 +23,13 @@ sudo touch /etc/systemd/system/vault.service
 sudo mkdir --parents /etc/vault.d
 sudo touch /etc/vault.d/vault.hcl
 
-HOST_IP_ADDRESS=$(hostname -i)
-echo "The IPD add is $HOST_IP_ADDRESS"
-sed -i "s/IP_ADDRESS/$HOST_IP_ADDRESS/g" vault.hcl
-echo "ETCD host 1: $1"
-echo "ETCD host 2: $2"
-sed -i "s/ETCD_HOST_1/$1/g" vault.hcl
-sed -i "s/ETCD_HOST_2/$2/g" vault.hcl
+
+echo "The IPD add is $1"
+sed -i "s/IP_ADDRESS/$1/g" vault.hcl
+echo "ETCD host 1: $2"
+echo "ETCD host 2: $3"
+sed -i "s/ETCD_HOST_1/$2/g" vault.hcl
+sed -i "s/ETCD_HOST_2/$3/g" vault.hcl
 echo "Updated vault.hcl"
 
 cp vault.hcl /etc/vault.d/vault.hcl
