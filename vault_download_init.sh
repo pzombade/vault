@@ -38,9 +38,12 @@ sudo cp vault.hcl /etc/vault.d/vault.hcl
 sudo chown --recursive vault:vault /etc/vault.d
 sudo chmod 640 /etc/vault.d/vault.hcl
 
+
 sudo systemctl enable vault
 sudo systemctl start vault
 
+echo "Sleeping for 20 seconds. So that vault can start successfully."
+sleep 15s
 
 HOST_FQDN_NAME=$(hostname -f)
 export VAULT_ADDR=http://$HOST_FQDN_NAME:8200
