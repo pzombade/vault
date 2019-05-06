@@ -3,15 +3,15 @@
 
 ui=true
 
-api_addr = "http://IP_ADDRESS:8200"
-cluster_addr = "https://IP_ADDRESS:8201"
+api_addr = "http://10.133.186.27:8200"
+cluster_addr = "https://10.133.186.27:8201"
 
 storage "file"{
-path = "/etc/vault_storage"
+path = "/etc/vault.d/vault_storage"
 }
 
 listener "tcp" {
-   cluster_address  = "IP_ADDRESS:8201"
+   cluster_address  = "10.133.186.27:8201"
    address     = "0.0.0.0:8200"
    tls_disable = 1
 }
