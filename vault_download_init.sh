@@ -45,22 +45,31 @@ sudo chmod 640 /etc/vault.d/vault.hcl
 sudo systemctl enable vault
 sudo systemctl start vault
 
-echo "Sleeping for 20 seconds. So that vault can start successfully."
+echo "Sleeping for 15 seconds. So that vault can start successfully."
 sleep 15s
 
 
+INITIALIZED=$(vault status | grep "Initialized" | awk '{print $2}')
+echo "Vault cluster status is: $INITIALIZED"
 
-echo "Initializing vault in keys.txt"
-vault operator init >> keys.txt
+if [ "$INITIALIZED" = "true" ]; then
+    echo "Already initialized"
+else
+    echo "Initializing vault in keys.txt"
+	vault operator init >> keys.txt
 
-echo "Sleeping for 10 seconds..."
-sleep 10s
+	echo "Sleeping for 10 seconds..."
+	sleep 10s
 
-echo "Unsealing the vault for $VAULT_ADDR"
-for i in `cat keys.txt | grep "Unseal Key " | awk '{print $4}'` ;
-        do vault operator unseal $i ;
-done
-echo "Unsealing completed"
+	echo "Unsealing the vault for $VAULT_ADDR"
+	for i in `cat keys.txt | grep "Unseal Key " | awk '{print $4}'` ;
+		do vault operator unseal $i ;
+	done
+	echo "Unsealing completed"
+fi
+
+
+
 
 
 
