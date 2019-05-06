@@ -40,8 +40,8 @@ sudo chmod 640 /etc/vault.d/vault.hcl
 
 sudo systemctl enable vault
 sudo systemctl start vault
-sudo systemctl status vault
 
+: '
 HOST_FQDN_NAME=$(hostname -f)
 export VAULT_ADDR=http://$HOST_FQDN_NAME:8200
 
@@ -53,6 +53,6 @@ for i in `cat keys.txt | grep "Unseal Key " | awk '{print $4}'` ;
         do vault operator unseal $i ;
 done
 echo "Unsealing completed"
-
+'
 
 
