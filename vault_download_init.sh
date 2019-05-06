@@ -18,7 +18,7 @@ vault --version
 #complete -C /usr/local/bin/vault vault
 
 sudo setcap cap_ipc_lock=+ep /usr/local/bin/vault
-sudo touch /etc/systemd/system/vault.service
+sudo cp vault.service /etc/systemd/system/vault.service
 
 sudo mkdir --parents /etc/vault.d
 sudo touch /etc/vault.d/vault.hcl
@@ -32,7 +32,7 @@ sed -i "s/ETCD_HOST_1/$2/g" vault.hcl
 sed -i "s/ETCD_HOST_2/$3/g" vault.hcl
 echo "Updated vault.hcl"
 
-cp vault.hcl /etc/vault.d/vault.hcl
+sudo cp vault.hcl /etc/vault.d/vault.hcl
 
 sudo chown --recursive vault:vault /etc/vault.d
 sudo chmod 640 /etc/vault.d/vault.hcl
