@@ -1,6 +1,11 @@
 #sudo useradd --system --home /etc/vault.d -m -U vault
 #sudo passwd vault
 
+if [[ $# -eq 0 ]] ; then
+    echo 'Please provide etcd host deatils.'
+    exit 0
+fi
+
 echo "Downloading the vault binaries."
 wget https://releases.hashicorp.com/vault/1.1.1/vault_1.1.1_linux_amd64.zip
 unzip vault_1.1.1_linux_amd64.zip
