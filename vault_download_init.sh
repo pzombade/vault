@@ -52,10 +52,10 @@ sleep 15s
 INITIALIZED=$(vault status | grep "Initialized" | awk '{print $2}')
 echo "Vault cluster status is: $INITIALIZED"
 
-if [ "$INITIALIZED" = "true" ]; then
+if [ "$INITIALIZED" == "true" ]; then
     echo "Already initialized .. make GRPC/REST call to fetch the keys"
 else
-    echo "Initializing vault in keys.txt"
+    echo "First instance of the cluster. Initializing vault in keys.txt"
 	vault operator init >> keys.txt
 
 	echo "Sleeping for 10 seconds..."
