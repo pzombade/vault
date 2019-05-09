@@ -6,11 +6,17 @@ if [[ $# -eq 0 ]] ; then
     exit 0
 fi
 
-echo "Downloading the vault binaries."
-wget https://releases.hashicorp.com/vault/1.1.1/vault_1.1.1_linux_amd64.zip
-unzip vault_1.1.1_linux_amd64.zip
-sudo chown root:root vault
-sudo mv vault /usr/local/bin/
+if [ ! -f /opt/bmc/vault_1.1.1_linux_amd64.zip ]; then
+	echo "Downloading the vault binaries."
+	wget https://releases.hashicorp.com/vault/1.1.1/vault_1.1.1_linux_amd64.zip
+	mv vault_1.1.1_linux_amd64.zip /opt/bmc
+else
+	echo "Vault zip found skipping the download."
+fi
+
+unzip /opt/bmc/vault_1.1.1_linux_amd64.zip
+sudo chown root:root /opt/bmc/vault
+sudo mv /opt/bmc/vault /usr/local/bin/
 vault --version
 
 #echo "Installing vault autocomplete."
@@ -21,6 +27,7 @@ sudo setcap cap_ipc_lock=+ep /usr/local/bin/vault
 sudo cp vault.service /etc/systemd/system/vault.service
 
 sudo mkdir --parents /etc/vault.d
+#!/bin/bash
 
 HOST_FQDN_NAME=$(hostname -f)
 export VAULT_ADDR=http://$HOST_FQDN_NAME:8200
@@ -48,6 +55,8 @@ sudo systemctl start vault
 echo "Sleeping for 15 seconds. So that vault can start successfully."
 sleep 15s
 
+STATUS=$(vault status)
+echo "Vault status is $STATUS"
 
 INITIALIZED=$(vault status | grep "Initialized" | awk '{print $2}')
 echo "Vault cluster status is: $INITIALIZED"
