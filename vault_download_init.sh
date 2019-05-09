@@ -53,7 +53,7 @@ INITIALIZED=$(vault status | grep "Initialized" | awk '{print $2}')
 echo "Vault cluster status is: $INITIALIZED"
 
 if [ "$INITIALIZED" = "true" ]; then
-    echo "Already initialized"
+    echo "Already initialized .. make GRPC/REST call to fetch the keys"
 else
     echo "Initializing vault in keys.txt"
 	vault operator init >> keys.txt
