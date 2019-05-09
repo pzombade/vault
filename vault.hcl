@@ -3,13 +3,13 @@
 
 ui=true
 
-api_addr = "http://IP_ADDRESS:8200"
+api_addr = "http://IP_ADDRESS"
 cluster_addr = "https://IP_ADDRESS:8201"
 
 storage "etcd" {
   address  = "http://ETCD_HOST_1:2380,http://ETCD_HOST_2:2380"
   etcd_api = "v3"
-  path = "vault_storage_951247/"
+  path = "vault_storage_95238/"
   ha_enabled    = "true"
 }
 
