@@ -6,17 +6,15 @@ if [[ $# -eq 0 ]] ; then
     exit 0
 fi
 
-if [ ! -f /opt/bmc/vault_1.1.1_linux_amd64.zip ]; then
+if [ ! -f /usr/local/bin/vault ]; then
 	echo "Downloading the vault binaries."
 	wget https://releases.hashicorp.com/vault/1.1.1/vault_1.1.1_linux_amd64.zip
-	mv vault_1.1.1_linux_amd64.zip /opt/bmc
+	unzip vault_1.1.1_linux_amd64.zip
+	mv vault /usr/local/bin
 else
 	echo "Vault zip found skipping the download."
 fi
 
-unzip /opt/bmc/vault_1.1.1_linux_amd64.zip
-sudo chown root:root /opt/bmc/vault
-sudo mv /opt/bmc/vault /usr/local/bin/
 vault --version
 
 #echo "Installing vault autocomplete."
