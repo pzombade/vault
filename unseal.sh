@@ -5,3 +5,5 @@ for i in `cat keys.txt | grep "Unseal Key " | awk '{print $4}'` ;
         do vault operator unseal $i ;
 done
 echo "Unsealing completed"
+
+
